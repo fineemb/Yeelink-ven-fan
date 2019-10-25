@@ -4,7 +4,7 @@
 
 Please follow the instructions on [Retrieving the Access Token](https://www.home-assistant.io/components/vacuum.xiaomi_miio/#retrieving-the-access-token) to get the API token to use in the configuration.yaml file.
 
-Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all the work.件
+Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all the work.
 
 
 ## 特点
@@ -34,7 +34,7 @@ fan:
 
 ## 平台服务
 
-### Service `yeelink_set_angle`
+### 服务  `yeelink_set_angle`
 
 设置凉霸风口角度
 
