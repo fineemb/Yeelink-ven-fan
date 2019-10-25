@@ -4,15 +4,35 @@
 #   @Description   : 
 #   @Date          : 2019-10-25 18:13:35
 #   @LastEditors   : fineemb
-#   @LastEditTime  : 2019-10-26 00:09:11
+#   @LastEditTime  : 2019-10-26 07:10:00
 # #############################################################################
 
 yeelink_set_angle: 
-  description: Set yunmi hood light off
+  description: Set yeelink fan angle off
   fields: 
     entity_id: 
-      description: Name of yeelink fan to set light off
+      description: Name of yeelink fan to set angle off
       example: 'fan.liang_ba'
     angle: 
       description: Name of the attribute to set 65-120.
       example: '80'
+
+yeelink_set_anion: 
+  description: Set yeelink fan anion off
+  fields: 
+    entity_id: 
+      description: Name of yeelink fan to set anion off
+      example: 'fan.liang_ba'
+    anion: 
+      description: Name of the attribute to set on/off.
+      example: 'on'
+
+yeelink_set_init: 
+  description: Set yeelink fan init off
+  fields: 
+    entity_id: 
+      description: Name of yeelink fan to set init off
+      example: 'fan.liang_ba'
+    init: 
+      description: Name of the attribute to set on/off.
+      example: 'off'

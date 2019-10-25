@@ -4,7 +4,7 @@
 @Description   : 
 @Date          : 2019-10-25 00:52:13
 @LastEditors   : fineemb
-@LastEditTime  : 2019-10-26 00:07:40
+@LastEditTime  : 2019-10-26 07:05:32
 '''
 import voluptuous as vol
 
@@ -21,14 +21,33 @@ import logging
 _LOGGER = logging.getLogger(__name__)
 
 ATTR_ANGLE = 'angle'
+ATTR_ANION = 'anion'
+ATTR_INIT = 'init'
+
 SERVICE_SET_ANGLE = "yeelink_set_angle"
+SERVICE_SET_ANION = "yeelink_set_anion"
+SERVICE_SET_INIT = "yeelink_set_init"
+
 SET_SERVICE_SCHEMA = vol.Schema({
     vol.Required(ATTR_ENTITY_ID): cv.entity_id
 })
+
+
 SERVICE_SCHEMA_ANGLE = SET_SERVICE_SCHEMA.extend({
     vol.Required(ATTR_ANGLE):
         vol.All(vol.Coerce(int), vol.Clamp(min=65, max=120))
 })
+
+SERVICE_SCHEMA_ANION = SET_SERVICE_SCHEMA.extend({
+    vol.Required(ATTR_ANION):
+        vol.All(vol.Coerce(str), vol.Clamp('off', 'on'))
+})
+
+SERVICE_SCHEMA_INIT = SET_SERVICE_SCHEMA.extend({
+    vol.Required(ATTR_INIT):
+        vol.All(vol.Coerce(str), vol.Clamp('off', 'on'))
+})
+
 YEELINKVEN_FAN_DEVICES = "yeelink.ven_fan.vf1"
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
@@ -64,7 +83,15 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         if service.service == SERVICE_SET_ANGLE:
             device.set_angle(**params)
 
+        if service.service == SERVICE_SET_ANION:
+            device.set_anion(**params)
+
+        if service.service == SERVICE_SET_INIT:
+            device.set_init(**params)
+
     hass.services.register(DOMAIN, SERVICE_SET_ANGLE, service_handle, schema=SERVICE_SCHEMA_ANGLE)
+    hass.services.register(DOMAIN, SERVICE_SET_ANION, service_handle, schema=SERVICE_SCHEMA_ANION)
+    hass.services.register(DOMAIN, SERVICE_SET_INIT, service_handle, schema=SERVICE_SCHEMA_INIT)
 
 class YeelinkVenFan(FanEntity):
 
@@ -75,6 +102,8 @@ class YeelinkVenFan(FanEntity):
         self._is_on = False
         self._oscillate = False
         self._gears = 0
+        self._anion_onoff = 1
+        self._init_fan_opt = 0
         self._state_attrs = {}
 
     @property
@@ -117,12 +146,14 @@ class YeelinkVenFan(FanEntity):
             anion_onoff = self._device.send('get_prop', ["anion_onoff"])[0]
             init_fan_opt = self._device.send('get_prop', ["init_fan_opt"])[0]
 
-            _LOGGER.debug('update Yeelink ven fan status: %s %s %s %s', bh_mode, gears, swing_action, swing_angle)
+            _LOGGER.debug('update Yeelink ven fan status: %s %s %s %s %s %s', bh_mode, gears, swing_action, swing_angle, anion_onoff, init_fan_opt)
             
             self._is_on = self.fan_mode(bh_mode) != 0
             self._oscillate = self.swing_on(swing_action) != 0
             self._gears = gears
             self._swing_angle = swing_angle != 0
+            self._init_fan_opt = init_fan_opt != 0
+            self._anion_onoff  = anion_onoff != 1
             self._state_attrs.update({
                 "anion_onoff": anion_onoff,
                 "gears": gears,
@@ -151,6 +182,12 @@ class YeelinkVenFan(FanEntity):
             
     def angle(self) -> int:           
         return self._swing_angle
+
+    def anion(self) -> bool:           
+        return self._anion_onoff
+
+    def init(self) -> bool:           
+        return self._init_fan_opt    
             
     def fan_mode(self, bh_mode):
         if bh_mode == "bh_off":
@@ -173,7 +210,22 @@ class YeelinkVenFan(FanEntity):
             self._gears = 1
 
     def set_angle(self, angle: int) -> None:
+        """ 风口角度 """
         self._device.send('set_swing', ["angle",angle])
+
+    def set_anion(self, anion: str) -> None:
+        """ 负离子 """
+        if anion == 'on':
+            self._device.send('set_anion', [1])
+        else:
+            self._device.send('set_anion', [0])
+
+    def set_init(self, init: str) -> None:
+        """ 上电初始化 """
+        if init == 'on':
+            self._device.send('set_init_fan_opt', [1])
+        else:
+            self._device.send('set_init_fan_opt', [0])
 
     def turn_on(self, speed: str = None, **kwargs) -> None:
         if not self._is_on:
