@@ -1,0 +1,18 @@
+# #############################################################################
+#   @Author        : fineemb
+#   @Github        : https://github.com/fineemb
+#   @Description   : 
+#   @Date          : 2019-10-25 18:13:35
+#   @LastEditors   : fineemb
+#   @LastEditTime  : 2019-10-26 00:09:11
+# #############################################################################
+
+yeelink_set_angle: 
+  description: Set yunmi hood light off
+  fields: 
+    entity_id: 
+      description: Name of yeelink fan to set light off
+      example: 'fan.liang_ba'
+    angle: 
+      description: Name of the attribute to set 65-120.
+      example: '80'
