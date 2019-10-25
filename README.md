@@ -1,4 +1,4 @@
-# Yeelink-ven-fan
+# Yeelight-ven-fan
 
 这是一个用于Hame assistant的Yeelink凉霸自定义组件
 
