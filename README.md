@@ -14,6 +14,8 @@ Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all
 * 风量(两档)
 * 摆风(摇头)
 * 固定角度(65-120)
+* 负离子
+* 上电运行
 
 ## 安装
 
