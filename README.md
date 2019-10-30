@@ -1,5 +1,7 @@
 # Yeelight-ven-fan
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+
 这是一个用于Hame assistant的Yeelight智能凉霸自定义组件
 
 Please follow the instructions on [Retrieving the Access Token](https://www.home-assistant.io/components/vacuum.xiaomi_miio/#retrieving-the-access-token) to get the API token to use in the configuration.yaml file.
