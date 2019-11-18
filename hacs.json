@@ -1,0 +1,6 @@
+{
+    "name": "Yeelight ven fan",
+    "domains": ["fan"],
+    "render_readme": true,
+    "homeassistant": "0.99.9"
+  }
