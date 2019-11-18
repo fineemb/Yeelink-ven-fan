@@ -1,5 +1,7 @@
 # Yeelight-ven-fan
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+
 这是一个用于Hame assistant的Yeelight智能凉霸自定义组件
 
 Please follow the instructions on [Retrieving the Access Token](https://www.home-assistant.io/components/vacuum.xiaomi_miio/#retrieving-the-access-token) to get the API token to use in the configuration.yaml file.
@@ -14,6 +16,8 @@ Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all
 * 风量(两档)
 * 摆风(摇头)
 * 固定角度(65-120)
+* 负离子
+* 上电运行
 
 ## 安装
 
@@ -50,7 +54,7 @@ fan:
 | 服务数据属性               | 选项      | 描述                                                                       |
 |---------------------------|----------|----------------------------------------------------------------------------|
 | `entity_id`               |      必选 | 指定一个凉霸的ID                                                            |
-| `init`                    |      必选 | 设置是否默认上电运行, 值为on/off                                               |
+| `init`                    |      必选 | 开关上电运行, 值为on/off                                                    |
 
 ### 服务  `yeelink_set_anion`
 
@@ -59,5 +63,5 @@ fan:
 | 服务数据属性               | 选项      | 描述                                                                       |
 |---------------------------|----------|----------------------------------------------------------------------------|
 | `entity_id`               |      必选 | 指定一个凉霸的ID                                                            |
-| `anion`                   |      必选 | 设置是否默认打开负离子, 值为on/off                                               |
+| `anion`                   |      必选 | 开关负离子, 值为on/off                                                      |
 
