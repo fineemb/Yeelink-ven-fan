@@ -1,9 +1,17 @@
+<!--
+ * @Author        : fineemb
+ * @Github        : https://github.com/fineemb
+ * @Description   : 
+ * @Date          : 2019-11-18 22:30:07
+ * @LastEditors   : fineemb
+ * @LastEditTime  : 2020-01-31 23:54:43
+ -->
 # Yeelight-ven-fan
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 
 这是一个用于Hame assistant的Yeelight智能凉霸自定义组件
-
+![ven_fan](https://img.youpin.mi-img.com/shopmain/19e12ab2af3a8db1dea1248ef2e36851.png)
 Please follow the instructions on [Retrieving the Access Token](https://www.home-assistant.io/components/vacuum.xiaomi_miio/#retrieving-the-access-token) to get the API token to use in the configuration.yaml file.
 
 Credits: Thanks to [Rytilahti](https://github.com/rytilahti/python-miio) for all the work.
