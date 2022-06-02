@@ -8,7 +8,7 @@
  -->
 # Yeelight-ven-fan
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 
 这是一个用于Hame assistant的Yeelight智能凉霸自定义组件
 ![ven_fan](https://img.youpin.mi-img.com/shopmain/19e12ab2af3a8db1dea1248ef2e36851.png)
